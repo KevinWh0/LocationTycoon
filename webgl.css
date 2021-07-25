@@ -1,0 +1,21 @@
+* {
+  margin: 0px;
+  overflow: hidden;
+}
+
+canvas {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+#location {
+  position: absolute;
+  top: 0px;
+}
+#posDebug {
+  position: absolute;
+  top: 0px;
+  color: white;
+}
