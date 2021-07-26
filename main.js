@@ -8,7 +8,7 @@ import {
 } from "./core/core.js";
 import { getCode, keys, mouseDown, mousePressed } from "./core/InputManager.js";
 import { Quad, Rectangle, TexturedQuad } from "./core/Renderer.js";
-import { addScene } from "./core/SceneManager.js";
+import { addScene, changeScene } from "./core/SceneManager.js";
 import { loadTexture, textures } from "./core/TextureLoader.js";
 import { GameScene } from "./game/scenes/GameScene.js";
 let rect = new Rectangle(0, 0, 10, 10);
@@ -16,6 +16,7 @@ let rect = new Rectangle(0, 0, 10, 10);
 setInitFunc(async () => {
   rect.setAnchor(Quad.RIGHT, Quad.CENTER);
   addScene(new GameScene());
+  changeScene(0);
   setGameLoop(DEFAULT_GAME_LOOP);
 });
 

@@ -1,8 +1,11 @@
-export let positionX, positionY;
+export let positionX = 0,
+  positionY = 0;
 const lat_InMiles = 69,
   longe_InMiles = 54.6;
 
 const feet_in_miles = 5280;
+
+let lastLocationUpdate = 0;
 
 let onUpdate = () => {};
 
@@ -16,11 +19,19 @@ button.addEventListener("click", () => {
     let new_positionX = position.coords.latitude * lat_InMiles * feet_in_miles;
     let new_positionY =
       position.coords.longitude * longe_InMiles * feet_in_miles;
-    document.getElementById(
-      "posDebug"
-    ).innerHTML = `X: ${new_positionX}, Y: ${new_positionY}`;
     if (new_positionY != positionY || new_positionX != positionX) {
-      onUpdate(new_positionX, new_positionY);
+      let timePassed = Date.now() - lastLocationUpdate;
+      //let distX = Math.abs(positionX - new_positionX);
+      //let distY = Math.abs(positionY - new_positionY);
+      var a = positionX - new_positionX;
+      var b = positionY - new_positionY;
+
+      let dist = Math.sqrt(a * a + b * b);
+
+      //console.log(dist, timePassed);
+
+      lastLocationUpdate = Date.now();
+      onUpdate(new_positionX, new_positionY, dist, timePassed);
     }
     positionX = new_positionX;
     positionY = new_positionY;

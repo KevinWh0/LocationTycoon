@@ -14,4 +14,5 @@ export function runScene() {
 export function changeScene(scene) {
   scenes[currentScene].onUnload();
   currentScene = scene;
+  scenes[currentScene].init();
 }

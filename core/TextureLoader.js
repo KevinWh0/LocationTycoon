@@ -6,7 +6,7 @@ let currentlyBoundTextures = { 0: -1 };
 
 initTextures();
 export function initTextures() {
-  loadTexture("Img");
+  loadTexture("Rock");
 }
 
 export async function loadTexture(fileName, callback) {

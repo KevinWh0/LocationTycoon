@@ -1,4 +1,4 @@
-import { init } from "./camera.js";
+import { Camera, init } from "./camera.js";
 import { prepareInputManager } from "./InputManager.js";
 import { runScene } from "./SceneManager.js";
 
@@ -6,6 +6,8 @@ import { runScene } from "./SceneManager.js";
 let looping = true,
   supported = true,
   fullyLoaded = false;
+
+export let activeCamera = new Camera(0, 0);
 export const maxFPS = 60; //60;
 //!BASIC STUFF TO DO WITH SETTING UP WEBGL
 let canvas = document.querySelector("#glcanvas");

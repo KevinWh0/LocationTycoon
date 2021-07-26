@@ -4,10 +4,12 @@ layout (location = 1) in vec2 textureCoords;
 out vec2 pos;
 uniform mat4 camProjectionMatrix;
 uniform mat4 transformationMatrix;
+uniform mat4 viewMatrix;
+
 out vec2 out_textureCoords;
 void main()
 {
-    gl_Position =   camProjectionMatrix * transformationMatrix * vec4(aPos.x, aPos.y, 0.0, 1.0);
+    gl_Position =  viewMatrix* camProjectionMatrix * transformationMatrix * vec4(aPos.x, aPos.y, 0.0, 1.0);
     pos = aPos;
     out_textureCoords = textureCoords;
 }

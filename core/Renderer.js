@@ -1,16 +1,18 @@
 import { MDN } from "../libs/matricies.js";
 import { projection, unitsTall, unitsWide } from "./camera.js";
-import { gl } from "./core.js";
+import { activeCamera, gl } from "./core.js";
 import {
   RECTLOC_CAMERA_PROJECTION,
   RECTLOC_COLOR,
   RECTLOC_TRANSFORM,
+  RECTLOC_VIEW_MATRIX,
   RECT_SHADER,
   TEXTURED_QUAD_SHADER,
   TEXTUREQUADLOC_CAMERA_PROJECTION,
   TEXTUREQUADLOC_DARKNESS,
   TEXTUREQUADLOC_IMAGEID,
   TEXTUREQUADLOC_TRANSFORM,
+  TEXTUREQUADLOC_VIEW_MATRIX,
 } from "./ShaderLoader.js";
 import { bindTexture, textures } from "./TextureLoader.js";
 
@@ -164,6 +166,8 @@ export class Rectangle extends Quad {
     gl.bindVertexArray(vao);
 
     gl.uniformMatrix4fv(RECTLOC_TRANSFORM, false, this.transform);
+    gl.uniformMatrix4fv(RECTLOC_VIEW_MATRIX, false, activeCamera.transform);
+
     gl.uniformMatrix4fv(RECTLOC_CAMERA_PROJECTION, false, projection);
     gl.uniform3f(RECTLOC_COLOR, this.color[0], this.color[1], this.color[2]);
 
@@ -187,7 +191,7 @@ export class Rectangle extends Quad {
 
 export class TexturedQuad extends Quad {
   img;
-  darkness = 10;
+  darkness = 0;
 
   constructor(x, y, w, h, img) {
     super(x, y, w, h);
@@ -203,6 +207,11 @@ export class TexturedQuad extends Quad {
     gl.bindVertexArray(vao);
 
     gl.uniformMatrix4fv(TEXTUREQUADLOC_TRANSFORM, false, this.transform);
+    gl.uniformMatrix4fv(
+      TEXTUREQUADLOC_VIEW_MATRIX,
+      false,
+      activeCamera.transform
+    );
     gl.uniformMatrix4fv(TEXTUREQUADLOC_CAMERA_PROJECTION, false, projection);
 
     bindTexture(0, textures.get(this.img));

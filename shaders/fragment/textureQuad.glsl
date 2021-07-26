@@ -7,7 +7,9 @@ uniform float darkness;
 
 void main()
 {
-    //FragColor = vec4(0.27, 1, 0.2, 1);
-    FragColor = texture(imageId, out_textureCoords) - vec4(darkness, darkness, darkness, 1.0);
+	vec4 col = texture(imageId, out_textureCoords);
+    if(col.a == 0.0)discard;
+
+    FragColor = col - vec4(darkness, darkness, darkness, 1.0);
 
 } 

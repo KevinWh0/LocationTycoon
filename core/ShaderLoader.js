@@ -6,6 +6,8 @@ export let TEXTURED_QUAD_SHADER;
 
 export let RECTLOC_CAMERA_PROJECTION;
 
+export let RECTLOC_VIEW_MATRIX;
+
 export let RECTLOC_TRANSFORM;
 
 export let RECTLOC_COLOR;
@@ -17,6 +19,8 @@ export let TEXTUREQUADLOC_TRANSFORM;
 export let TEXTUREQUADLOC_IMAGEID;
 
 export let TEXTUREQUADLOC_DARKNESS;
+
+export let TEXTUREQUADLOC_VIEW_MATRIX;
 
 let inited = false;
 initShaders();
@@ -41,6 +45,8 @@ function initUniforms() {
     "transformationMatrix"
   );
 
+  RECTLOC_VIEW_MATRIX = gl.getUniformLocation(RECT_SHADER, "viewMatrix");
+
   RECTLOC_COLOR = gl.getUniformLocation(RECT_SHADER, "color");
 
   TEXTUREQUADLOC_IMAGEID = gl.getUniformLocation(
@@ -61,6 +67,11 @@ function initUniforms() {
   TEXTUREQUADLOC_DARKNESS = gl.getUniformLocation(
     TEXTURED_QUAD_SHADER,
     "darkness"
+  );
+
+  TEXTUREQUADLOC_VIEW_MATRIX = gl.getUniformLocation(
+    TEXTURED_QUAD_SHADER,
+    "viewMatrix"
   );
 }
 
