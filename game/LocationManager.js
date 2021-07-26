@@ -5,6 +5,8 @@ const lat_InMiles = 69,
 
 let lastLocationUpdate = 0;
 
+const carSpeed = 10; //Anything above 10 MPH is bad, probably a car
+
 let onUpdate = () => {};
 
 export function setOnLocationUpdate(onUpdate_) {
@@ -26,7 +28,9 @@ button.addEventListener("click", () => {
       let dist = Math.sqrt(a * a + b * b);
       let timeInHoursPassed =
         timePassed * 1000 /*seconds*/ * 60 /*Minutes*/ * 60; /*Hours*/
-
+      if (dist / timeInHoursPassed > carSpeed) {
+        alert("CAR SPEED REACHED, PLEASE DONT PLAY IN A CAR");
+      }
       console.log(dist / timeInHoursPassed);
 
       lastLocationUpdate = Date.now();
