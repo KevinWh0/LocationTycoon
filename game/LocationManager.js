@@ -25,7 +25,7 @@ button.addEventListener("click", () => {
 
       let dist = Math.sqrt(a * a + b * b);
       let timeInHoursPassed =
-        timePassed / 1000 /*seconds*/ / 60 /*Minutes*/ / 60; /*Hours*/
+        timePassed * 1000 /*seconds*/ * 60 /*Minutes*/ * 60; /*Hours*/
 
       console.log(dist / timeInHoursPassed);
 
