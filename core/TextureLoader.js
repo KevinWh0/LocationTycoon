@@ -43,7 +43,7 @@ async function createAndSetupTexture(gl, imgName, callback) {
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
 
-  await loadImageFile(`../assets/images/${imgName}.png`, (image) => {
+  await loadImageFile(`./assets/images/${imgName}.png`, (image) => {
     //console.log(image.width, image.height);
 
     gl.texImage2D(
