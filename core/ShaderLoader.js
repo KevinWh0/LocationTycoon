@@ -79,13 +79,13 @@ export async function loadShader(name) {
   let vertexShader = createShader(
     gl,
     gl.VERTEX_SHADER,
-    await readTextFile(`../shaders/vertex/${name}.glsl`)
+    await readTextFile(`./shaders/vertex/${name}.glsl`)
   );
 
   let fragmentShader = createShader(
     gl,
     gl.FRAGMENT_SHADER,
-    await readTextFile(`../shaders/fragment/${name}.glsl`)
+    await readTextFile(`./shaders/fragment/${name}.glsl`)
   );
 
   var shaderProgram = createProgram(gl, vertexShader, fragmentShader);
