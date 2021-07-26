@@ -11,9 +11,8 @@ export class GameScene extends Scene {
     setOnLocationUpdate((x, y, dist, timePassed) => {
       document.getElementById(
         "posDebug"
-      ).innerHTML = `X: ${x}, Y: ${y}...... dist/time: ${dec.toString(
-        dist / timePassed
-      )}`;
+      ).innerHTML = `X: ${x}, Y: ${y}...... dist/time: ${dist / timePassed}`;
+      activeCamera.setPos(x, y);
       //console.log(x, y);
     });
   }

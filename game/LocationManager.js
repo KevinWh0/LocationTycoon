@@ -5,7 +5,7 @@ const lat_InMiles = 69,
 
 let lastLocationUpdate = 0;
 
-const carSpeed = 10; //Anything above 10 MPH is bad, probably a car
+const carSpeed = 52800; //Anything above 52800(10 MPH) foot per hour is bad, probably a car
 
 let onUpdate = () => {};
 
