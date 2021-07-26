@@ -3,8 +3,6 @@ export let positionX = 0,
 const lat_InMiles = 69,
   longe_InMiles = 54.6;
 
-const feet_in_miles = 5280;
-
 let lastLocationUpdate = 0;
 
 let onUpdate = () => {};
@@ -16,9 +14,8 @@ export function setOnLocationUpdate(onUpdate_) {
 let button = document.createElement("button");
 button.addEventListener("click", () => {
   const locationGrabber = navigator.geolocation.watchPosition((position) => {
-    let new_positionX = position.coords.latitude * lat_InMiles * feet_in_miles;
-    let new_positionY =
-      position.coords.longitude * longe_InMiles * feet_in_miles;
+    let new_positionX = position.coords.latitude * lat_InMiles;
+    let new_positionY = position.coords.longitude * longe_InMiles;
     if (new_positionY != positionY || new_positionX != positionX) {
       let timePassed = Date.now() - lastLocationUpdate;
       //let distX = Math.abs(positionX - new_positionX);
@@ -27,11 +24,13 @@ button.addEventListener("click", () => {
       var b = positionY - new_positionY;
 
       let dist = Math.sqrt(a * a + b * b);
+      let timeInHoursPassed =
+        timePassed / 1000 /*seconds*/ / 60 /*Minutes*/ / 60; /*Hours*/
 
-      //console.log(dist, timePassed);
+      console.log(dist / timeInHoursPassed);
 
       lastLocationUpdate = Date.now();
-      onUpdate(new_positionX, new_positionY, dist, timePassed);
+      onUpdate(new_positionX, new_positionY, dist, timeInHoursPassed);
     }
     positionX = new_positionX;
     positionY = new_positionY;
