@@ -29,7 +29,7 @@ export class GameScene extends Scene {
 
     //activeCamera.translate(0.01, 0);
     //activeCamera.translate(0.1, 0);
-    activeCamera.translate(Math.sin(tick / 100) / 10, 0);
+    //activeCamera.translate(Math.sin(tick / 100) / 10, 0);
     tick++;
   }
 }

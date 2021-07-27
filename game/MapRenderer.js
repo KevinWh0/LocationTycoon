@@ -72,6 +72,6 @@ export function renderObjects() {
   }
 
   for (let i = 0; i < toRemove.length; i++) {
-    removeOnScreenObject(toRemove[i]);
+    //removeOnScreenObject(toRemove[i]);
   }
 }

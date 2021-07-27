@@ -13,6 +13,8 @@ export function setOnLocationUpdate(onUpdate_) {
   onUpdate = onUpdate_;
 }
 
+let userAlreadySawWarning = false;
+
 let button = document.createElement("button");
 button.addEventListener("click", () => {
   const locationGrabber = navigator.geolocation.watchPosition((position) => {
@@ -28,7 +30,8 @@ button.addEventListener("click", () => {
       let dist = Math.sqrt(a * a + b * b);
       let timeInHoursPassed =
         timePassed * 1000 /*seconds*/ * 60 /*Minutes*/ * 60; /*Hours*/
-      if (dist / timeInHoursPassed > carSpeed) {
+      if (dist / timeInHoursPassed > carSpeed && !userAlreadySawWarning) {
+        userAlreadySawWarning = true;
         alert("CAR SPEED REACHED, PLEASE DONT PLAY IN A CAR");
       }
       console.log(dist / timeInHoursPassed);
