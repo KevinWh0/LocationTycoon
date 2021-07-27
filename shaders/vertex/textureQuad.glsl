@@ -9,7 +9,7 @@ uniform mat4 viewMatrix;
 out vec2 out_textureCoords;
 void main()
 {
-    gl_Position =  viewMatrix* camProjectionMatrix * transformationMatrix * vec4(aPos.x, aPos.y, 0.0, 1.0);
+    gl_Position +=  camProjectionMatrix * viewMatrix * transformationMatrix * vec4(aPos.x, aPos.y, 0.0, 1.0);
     pos = aPos;
     out_textureCoords = textureCoords;
 }

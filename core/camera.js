@@ -11,7 +11,7 @@ export let unitsWide, unitsTall;
 //}
 
 export function init() {
-  unitsWide = 60;
+  unitsWide = 30;
   unitsTall = height / (width / unitsWide);
 
   projection = MDN.orthographicMatrix(
@@ -37,6 +37,12 @@ export class Camera {
     this.x = x;
     this.y = y;
     this.refreshTransform();
+  }
+
+  getPositionInTiles() {
+    let camXInTiles = activeCamera.x * (unitsWide / 2),
+      camYInTiles = activeCamera.y * (unitsTall / 2);
+    return [camXInTiles, camYInTiles];
   }
 
   refreshTransform() {

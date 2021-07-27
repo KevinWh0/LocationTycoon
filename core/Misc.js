@@ -1,3 +1,5 @@
+import { mouseDown } from "./InputManager.js";
+
 export function seededRandom(str) {
   str = str + "";
   for (var i = 0, h = 1779033703 ^ str.length; i < str.length; i++)
@@ -7,6 +9,33 @@ export function seededRandom(str) {
   h = Math.imul(h ^ (h >>> 16), 2246822507);
   h = Math.imul(h ^ (h >>> 13), 3266489909);
   return (h ^= h >>> 16) >>> 0;
+}
+
+export function inArea(X, Y, x, y, w, h) {
+  //if (mouseDown) console.log(X, Y, x, y, w, h);
+
+  if (X > x - 1 && Y > y - 1 && X < x + w && Y < y + h) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export function intersects(x1, y1, w1, h1, x, y, w, h) {
+  if (
+    inArea(x1, y1, x, y, w, h) ||
+    inArea(x1 + w1, y1, x, y, w, h) ||
+    inArea(x1 + w1, y1 + h1, x, y, w, h) ||
+    inArea(x1, y1 + h1, x, y, w, h)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export function removeItem(array, index) {
+  return array.slice(0, index).concat(array.slice(index + 1, array.length));
 }
 
 export function interpolate(a0, a1, w) {

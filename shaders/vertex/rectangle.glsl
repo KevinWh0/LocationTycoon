@@ -7,6 +7,6 @@ uniform mat4 viewMatrix;
 
 void main()
 {
-    gl_Position += viewMatrix * camProjectionMatrix * transformationMatrix * vec4(aPos.x, aPos.y, 0.0, 1.0);
+    gl_Position +=  camProjectionMatrix * viewMatrix * transformationMatrix * vec4(aPos.x, aPos.y, 0.0, 1.0);
     pos = aPos;
 }
